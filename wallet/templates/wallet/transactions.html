@@ -1,0 +1,38 @@
+{% extends "wallet/base.html" %}
+
+{% block content %}
+<div class="container">
+    {% if transactions %}
+    <div class="row text-center " style="background-color: navy;color: white;font-size: large;padding: 7px;">
+        <div class="col-md-4">Date</div>
+        <div class="col-md-4">Category</div>
+        <div class="col-md-4">Amount</div>
+    </div>
+    <br>
+        {% for transaction in transactions %}
+            {% if transaction in income %}
+            <a  href="{% url 'viewincome' transaction.id %}">
+                <div class="row text-center" style="border:1px solid black;padding: 7px;font-size: large;" >
+                    <div class="col-md-4">{{transaction.date}}</div>
+                    <div class="col-md-4">{{transaction.category}}</div>
+                    <div class="col-md-4 text-success">+{{transaction.amount}}</div>
+                </div>
+            </a>
+            {% else %}
+            <a href="{% url 'viewexpense' transaction.id %}">
+                <div class="row text-center" style="border:1px solid black;padding:7px;font-size: large;">
+                    <div class="col-md-4">{{transaction.date}}</div>
+                    <div class="col-md-4">{{transaction.category}}</div>
+                    <div class="col-md-4 text-danger">-{{transaction.amount}}</div>
+                </div>
+            </a>
+            {% endif %}
+            <br>
+        {% endfor %}
+        {% else %}
+            <h3>Yoy don't have any transactions!</h3>
+        {% endif %}
+
+</div>
+
+{% endblock %}

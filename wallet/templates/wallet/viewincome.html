@@ -1,0 +1,17 @@
+{% extends "wallet/base.html" %}
+
+{% block content %}
+<div class="text-center">
+    <h3>Income</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        {{error}}
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>
+    <form method="POST" action="{% url 'deleteincome' income.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success">Delete</button>
+    </form>
+</div>
+{% endblock %}

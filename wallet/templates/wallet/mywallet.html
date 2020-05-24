@@ -1,0 +1,33 @@
+{% extends "wallet/base.html" %}
+
+{% block content %}
+<div class="container text-center">
+    <h3>Hello!{{user.username}}</h3><br><br>
+    <table class="table text-center" style="font-size: large;">
+        <thead>
+          <tr class="table-warning">
+            <th>Account</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-success">
+            <td>Income</td>
+            <td>{{income}}</td>
+          </tr> 
+          <tr class="table-danger">
+            <td>Expense</td>
+            <td>{{expense}}</td>
+          </tr>  
+          <tr class="table-active">
+            <td>Balance</td>
+            <td>{{balance}}</td>
+          </tr>  
+        </tbody>
+    </table> 
+    <div class="row text-center" style="font-size: large;">
+        <div class="col-md-6"><a class="btn btn-success" href="{% url 'addincome' %}">+Income</a></div>
+        <div class="col-md-6"><a class="btn btn-success" href="{% url 'addexpense' %}">+Expense</a></div>
+    </div> 
+</div>
+{% endblock %}
